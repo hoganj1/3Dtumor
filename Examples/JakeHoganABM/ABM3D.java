@@ -14,7 +14,6 @@ import Grids.GridDiff3;
 import Tools.FileIO;
 import Tools.TickRateTimer;
 import Grids.GridDiff2;
-import org.lwjgl.Sys;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -316,9 +315,9 @@ public class ABM3D extends Grid3unstackable <ABMcell3d>{
         o2.SetAllCurr(O2_BOUNDARY_CONDITION);//FIXME-reinstate when ABM solver is implemented
 //            tnfa.SetAllCurr(TNFA_BOUNDARY_CONDITION);
         this.steadyCheckO2=new double[o2.length];
-//            this.steadyCheckTnfa=new double[tnfa.length];
-//            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-        final String fileName = "outFile.realisticParamTest"+Sys.getTime()+".csv";//Systime just generates a number that's different each time so files don't overwrite eachother
+        Random rand = new Random();
+        int n = rand.nextInt(50) + 1;//rand num between 1 and 1000 gives unique ofname
+        final String fileName = "outFile.realisticParamTest"+n+".csv";//Systime just generates a number that's different each time so files don't overwrite eachother
         this.outPath = fileName;
         if(outPath!=""){
             out=new FileIO(outPath,"w");
